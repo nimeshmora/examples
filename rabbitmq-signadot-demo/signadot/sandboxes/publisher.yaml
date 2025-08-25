@@ -1,0 +1,20 @@
+name: publisher-v2
+spec:
+  labels:
+    demo: rabbitmq
+    version: "v2"
+    signadot.com/sandbox: publisher-v2
+  cluster: "@{cluster}"
+  forks:
+  - forkOf:
+      kind: Deployment
+      namespace: rabbitmq-demo
+      name: publisher
+    customizations:
+      images:
+        - container: publisher
+          image: ghcr.io/emminex23/rabbitmq-publisher:dev
+  defaultRouteGroup:
+    endpoints:
+    - name: publisher
+      target: http://publisher.rabbitmq-demo.svc:8080

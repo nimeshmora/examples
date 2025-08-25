@@ -1,0 +1,16 @@
+name: consumer-v2
+spec:
+  labels:
+    demo: rabbitmq
+    signadot.com/sandbox: consumer-v2
+  cluster: "@{cluster}"
+  forks:
+  - forkOf:
+      kind: Deployment
+      namespace: rabbitmq-demo
+      name: consumer
+    # No custom env required; SIGNADOT_SANDBOX_* is injected automatically
+  defaultRouteGroup:
+    endpoints:
+    - name: publisher
+      target: http://publisher.rabbitmq-demo.svc:8080
