@@ -1,0 +1,6 @@
+flask==2.3.0
+pika==1.3.0
+redis==4.6.0
+
+opentelemetry-instrumentation
+opentelemetry-distro[otlp]==0.57b0
